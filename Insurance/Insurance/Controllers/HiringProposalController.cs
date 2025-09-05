@@ -1,43 +1,43 @@
-﻿using Insurance.Domain.DTOs.Response;
+﻿using Insurance.Application.Services;
+using Insurance.Domain.DTOs.Response;
 using Insurance.Domain.Entities;
 using Insurance.Domain.Enums;
 using Insurance.Domain.Interfaces.Application;
 using InsuranceApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Insurance.Controllers
+namespace InsuranceApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class InsuranceProposalController : Controller
+    public class HiringProposalController : Controller
     {
-        private readonly IInsurancesService _insurancesService;
+        private readonly IProposalHiringService _proposalHiringService;
 
-        public InsuranceProposalController(IInsurancesService insuranceService)
+        public HiringProposalController(IProposalHiringService proposalHiringService)
         {
-            _insurancesService = insuranceService;
+            _proposalHiringService = proposalHiringService;
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult> CreateProposal(CreateProposalModel model)
+        public async Task<ActionResult> CreateProposalHiring(ProposalHiringModal model)
         {
             try
             {
                 if (model is null)
                     return BadRequest("Necessario informar os dados do seguro");
 
-                Insurances insurance = new Insurances
+                ProposalHiring proposalHiring = new ProposalHiring
                 {
+                    InsurancesId = model.InsurancesId,
                     Name = model.Name,
                     TaxNumber = model.TaxNumber,
                     BirthDate = model.BirthDate,
                     Status = model.Status,
-                    Type = model.Type,
-                    InsuranceValue = model.InsuranceValue,
                     CreationDate = DateTime.Now
                 };
 
-                BaseResponseDTO response = await _insurancesService.CreateInsurances(insurance);
+                BaseResponseDTO response = await _proposalHiringService.CreateProposalHiring(proposalHiring);
 
                 return StatusCode(StatusCodes.Status200OK, response);
             }
@@ -47,12 +47,12 @@ namespace Insurance.Controllers
             }
         }
 
-        [HttpPost("getallproposal")]
-        public async Task<ActionResult> GetAllProposal()
+        [HttpPost("getallproposalhiring")]
+        public async Task<ActionResult> GetAllProposalHiring()
         {
             try
             {
-                BaseResponseDTO response = await _insurancesService.GetAllInsurances();
+                BaseResponseDTO response = await _proposalHiringService.GetAllProposalHiring();
 
                 return StatusCode(StatusCodes.Status200OK, response);
             }
@@ -62,15 +62,15 @@ namespace Insurance.Controllers
             }
         }
 
-        [HttpPost("updatestatusproposal")]
-        public async Task<ActionResult> UpdateStatusProposal(long id, InsuranceStatus status)
+        [HttpPost("updateproposalhiring")]
+        public async Task<ActionResult> UpdateProposalHiring(long id, ProposalHiringStatus status)
         {
             try
             {
-                if(id == null || status == null)
-                    return BadRequest("Necessario informar o id e o status do seguro"); 
+                if (id == null || status == null)
+                    return BadRequest("Necessario informar o id e o status do seguro");
 
-                BaseResponseDTO response = await _insurancesService.UpdateInsurances(id, status);
+                BaseResponseDTO response = await _proposalHiringService.UpdateProposalHiring(id, status);
 
                 return StatusCode(StatusCodes.Status200OK, response);
             }

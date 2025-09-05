@@ -63,6 +63,9 @@ namespace Insurance.Application.Services
                 _insurancesRepository.Update(insurance);
 
                 _insurancesRepository.CommitTransaction();
+
+                response.Success = true;
+                response.Message = "Insurances update successfully.";
             }
             catch (Exception ex)
             {

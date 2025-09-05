@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Insurance.Domain\Insurance.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="2.11.1" />
+  </ItemGroup>
+
 </Project>

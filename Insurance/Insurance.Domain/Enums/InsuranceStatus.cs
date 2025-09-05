@@ -2,8 +2,8 @@
 {
     public enum InsuranceStatus
     {
-        Approved,
-        Rejected,
-        Analysis
+        Approved = 0,
+        Rejected = 1,
+        Analysis = 2
     }
 }

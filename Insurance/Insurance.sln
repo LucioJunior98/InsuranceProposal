@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.CrossCutting", "Insurance.CrossCutting\Insurance.CrossCutting.csproj", "{132A90D2-8119-454F-8822-801AC6237374}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{4A6BCB41-412E-4C40-94CF-F778E83996C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateProposalHiringKafka", "CreateProposalHiringKafka\CreateProposalHiringKafka.csproj", "{A3324D06-9D51-43B5-8779-99768FFA938E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{132A90D2-8119-454F-8822-801AC6237374}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{132A90D2-8119-454F-8822-801AC6237374}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{132A90D2-8119-454F-8822-801AC6237374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3324D06-9D51-43B5-8779-99768FFA938E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3324D06-9D51-43B5-8779-99768FFA938E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3324D06-9D51-43B5-8779-99768FFA938E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3324D06-9D51-43B5-8779-99768FFA938E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +60,7 @@ Global
 		{561C840F-2D4D-46EC-A803-FB893EFFDE9F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{3D6E4E4B-0772-4630-AA92-5D6DCDDC4C2F} = {3EC14E9F-F05A-4A23-B834-2216C293321B}
 		{132A90D2-8119-454F-8822-801AC6237374} = {3EC14E9F-F05A-4A23-B834-2216C293321B}
+		{A3324D06-9D51-43B5-8779-99768FFA938E} = {4A6BCB41-412E-4C40-94CF-F778E83996C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86564D0C-6704-4666-BFED-B51D7FEC3B92}

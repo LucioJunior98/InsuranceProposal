@@ -11,6 +11,7 @@ namespace Insurance.Infrastructure.Repository.Context
         }
 
         public DbSet<Insurances> Insurances { get; set; }
+        public DbSet<ProposalHiring> ProposalHiring { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

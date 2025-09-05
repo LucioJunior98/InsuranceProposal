@@ -25,7 +25,8 @@ public class Program
                     .AddFluentValidationClientsideAdapters()
                     .AddValidatorsFromAssemblyContaining<Program>();
 
-        builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddDbContext<AppDbContext>(options =>
+                        options.UseSqlServer(builder.Configuration.GetConnectionString("InsuranceApi.con")));
 
         builder.Services.AddApplicationDI();
         builder.Services.AddApplicationRepository();

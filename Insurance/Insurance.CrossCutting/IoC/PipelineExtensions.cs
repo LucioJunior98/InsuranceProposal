@@ -11,11 +11,15 @@ namespace Insurance.CrossCutting.IoC
         public static void AddApplicationDI(this IServiceCollection services)
         {
             services.AddScoped<IInsurancesService, InsurancesService>();
+            services.AddScoped<IProposalHiringService, ProposalHiringService>();
+            services.AddScoped<IProducerService, ProducerService>();
+            services.AddScoped<IConsumerService, ConsumerService>();
         }
 
         public static void AddApplicationRepository(this IServiceCollection services)
         {
             services.AddScoped<IInsurancesRepository, InsuranceRepository>();
+            services.AddScoped<IProposalHiringRepository, ProposalHiringRepository>();
         }
     }
 }
