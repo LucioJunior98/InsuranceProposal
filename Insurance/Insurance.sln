@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceApi", "Insurance\InsuranceApi.csproj", "{C9FABF60-1570-4DEE-866F-E12459C9D56D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceApi", "Insurance\InsuranceApi.csproj", "{C9FABF60-1570-4DEE-866F-E12459C9D56D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3EC14E9F-F05A-4A23-B834-2216C293321B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.Application", "Insurance.Application\Insurance.Application.csproj", "{89549156-3EDC-4BF5-97E8-53F5AE441F50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Application", "Insurance.Application\Insurance.Application.csproj", "{89549156-3EDC-4BF5-97E8-53F5AE441F50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.Domain", "Insurance.Domain\Insurance.Domain.csproj", "{561C840F-2D4D-46EC-A803-FB893EFFDE9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Domain", "Insurance.Domain\Insurance.Domain.csproj", "{561C840F-2D4D-46EC-A803-FB893EFFDE9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.Infrastructure", "Insurance.Infrastructure\Insurance.Infrastructure.csproj", "{3D6E4E4B-0772-4630-AA92-5D6DCDDC4C2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Infrastructure", "Insurance.Infrastructure\Insurance.Infrastructure.csproj", "{3D6E4E4B-0772-4630-AA92-5D6DCDDC4C2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.CrossCutting", "Insurance.CrossCutting\Insurance.CrossCutting.csproj", "{132A90D2-8119-454F-8822-801AC6237374}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.CrossCutting", "Insurance.CrossCutting\Insurance.CrossCutting.csproj", "{132A90D2-8119-454F-8822-801AC6237374}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{4A6BCB41-412E-4C40-94CF-F778E83996C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateProposalHiringKafka", "CreateProposalHiringKafka\CreateProposalHiringKafka.csproj", "{A3324D06-9D51-43B5-8779-99768FFA938E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateProposalHiringMSG", "CreateProposalHiringKafka\CreateProposalHiringMSG.csproj", "{A3324D06-9D51-43B5-8779-99768FFA938E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,6 @@
 {
     public interface IConsumerService
     {
-        void ConsumeMessage();
+        Task<bool> ConsumeMessage();
     }
 }

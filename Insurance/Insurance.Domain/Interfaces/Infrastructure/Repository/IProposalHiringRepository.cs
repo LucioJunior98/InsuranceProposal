@@ -11,5 +11,7 @@ namespace Insurance.Domain.Interfaces.Infrastructure.Repository
         Task<ProposalHiring?> GetByStatus(ProposalHiringStatus status);
 
         Task<List<ProposalHiring>> GetAllProposalHiring();
+
+        Task<List<ProposalHiring>> GetAllByStatus(ProposalHiringStatus status);
     }
 }

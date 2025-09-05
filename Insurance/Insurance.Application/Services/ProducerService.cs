@@ -1,39 +1,40 @@
-﻿using Confluent.Kafka;
-using Insurance.Domain.Interfaces.Application;
+﻿using Insurance.Domain.Interfaces.Application;
+using RabbitMQ.Client;
 
 namespace Insurance.Application.Services
 {
     public class ProducerService : IProducerService
     {
-        private ProducerConfig config => new ProducerConfig
+        public async Task<bool> GenerateMessage(string message)
         {
-            BootstrapServers = "localhost:9092"
-        };
-
-        public string GenerateMessage(string message)
-        {
-            using var producer = new ProducerBuilder<Null, string>(config).Build();
-            string resultMessage = string.Empty;    
-
-            while (true)
+            try
             {
-                try
-                {
-                    if (string.IsNullOrEmpty(message))
-                        break;
+                var factory = new ConnectionFactory() { HostName = "localhost" };
+                await using var connection = await factory.CreateConnectionAsync();
+                await using var channel = await connection.CreateChannelAsync();
 
-                    var result = producer.ProduceAsync("ProposalHiring-topic", new Message<Null, string> { Value = message });
+                await channel.QueueDeclareAsync(queue: "ProposalHiringQueue",
+                                         durable: false,
+                                         exclusive: false,
+                                         autoDelete: false,
+                                         arguments: null);
 
-                    resultMessage = result.Result.Value;
-                }
-                catch (Exception ex)
-                {
-                    resultMessage = ex.Message;
-                    break;
-                }
+                ReadOnlyMemory<byte> msg = System.Text.Encoding.UTF8.GetBytes(message); 
+
+                await channel.BasicPublishAsync(exchange: "",
+                                         routingKey: "ProposalHiringQueue",
+                                         mandatory: true,
+                                         basicProperties: new BasicProperties(),
+                                         body: msg);
+
+
+
+                return true;
             }
-
-            return resultMessage;
+            catch 
+            {
+                return false;
+            }
         }
     }
 }

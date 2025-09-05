@@ -1,7 +1,8 @@
-﻿using System.Text.Json;
-using Confluent.Kafka;
-using Insurance.Domain.Entities;
+﻿using Insurance.Domain.Entities;
+using Insurance.Domain.Enums;
 using Insurance.Domain.Interfaces.Application;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 namespace Insurance.Application.Services
 {
@@ -9,49 +10,51 @@ namespace Insurance.Application.Services
     {
         private readonly IProposalHiringService _proposalHiringService;
 
-        private ConsumerConfig config => new ConsumerConfig
-        {
-            BootstrapServers = "localhost:29092",
-            GroupId = "ProposalHiring-group",
-            AutoOffsetReset = AutoOffsetReset.Earliest
-        };
-
         public ConsumerService(IProposalHiringService proposalHiring)
         {
             _proposalHiringService = proposalHiring;
         }
 
-        public void ConsumeMessage()
+        public async Task<bool> ConsumeMessage()
         {
-            using var consumer = new ConsumerBuilder<Ignore, string>(config).Build();
-            consumer.Subscribe("ProposalHiring-topic");
+            var factory = new ConnectionFactory() { HostName = "localhost" };
+            await using var connection = await factory.CreateConnectionAsync();
+            await using var channel = await connection.CreateChannelAsync();
+
+            bool haveMessage = false;
 
             try
             {
 
-                while (true)
+                await channel.QueueDeclareAsync(queue: "ProposalHiringQueue", durable: false, exclusive: false, autoDelete: false, arguments: null);
+
+                var consumer = new AsyncEventingBasicConsumer(channel);
+
+                consumer.ReceivedAsync += async (model, ea) =>
                 {
-                    var consumeResult = consumer.Consume();
-                    if (consumeResult.Message != null)
-                    {
-                        ProposalHiring proposalHiring = JsonSerializer.Deserialize<ProposalHiring>(consumeResult.Message.Value) ?? new ProposalHiring();
+                    haveMessage = true;
 
-                        _proposalHiringService.CreateProposalHiring(proposalHiring);
+                    var body = ea.Body.ToArray();
+                    var message = System.Text.Encoding.UTF8.GetString(body);
 
-                        break;
-                    }
-                }
+                    ProposalHiring proposalHiring = System.Text.Json.JsonSerializer.Deserialize<ProposalHiring>(message);
 
+                    if (proposalHiring != null)
+                        await _proposalHiringService.UpdateProposalHiring(proposalHiring.Id, ProposalHiringStatus.Completed, 2);
+                    else
+                        haveMessage = false;
+
+                    await channel.BasicAckAsync(ea.DeliveryTag, false);
+                };
+
+                await channel.BasicConsumeAsync(queue: "ProposalHiringQueue", autoAck: false, consumer: consumer);
             }
-            catch (Exception)
+            catch(Exception ex)
             {
+                haveMessage = false;
+            }
 
-                throw;
-            }
-            finally
-            {
-                consumer.Close();
-            }
+            return haveMessage;
         }
     }
 }

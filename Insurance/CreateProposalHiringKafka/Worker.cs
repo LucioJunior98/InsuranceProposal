@@ -19,10 +19,10 @@ namespace CreateProposalHiringKafka
             {
                 if (_logger.IsEnabled(LogLevel.Information))
                 {
-                    using var scope = _scopeFactory.CreateScope();
+                    using var scope = _scopeFactory.CreateAsyncScope();
                     var executor = scope.ServiceProvider.GetRequiredService<IExecuteTRA>();
 
-                    executor.Execute();
+                    await executor.Execute();
 
                     _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 }

@@ -2,6 +2,6 @@
 {
     public interface IExecuteTRA
     {
-        void Execute();
+        Task Execute();
     }
 }

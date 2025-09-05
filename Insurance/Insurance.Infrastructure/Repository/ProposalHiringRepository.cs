@@ -45,6 +45,11 @@ namespace Insurance.Infrastructure.Repository
             return await ProposalHiring.FirstOrDefaultAsync(x => x.Status == status && x.DeletionDate == null);
         }
 
+        public async Task<List<ProposalHiring>> GetAllByStatus(ProposalHiringStatus status)
+        {
+            return await ProposalHiring.Where(x => x.Status == status && x.DeletionDate == null).ToListAsync();
+        }
+
         public void Save(ProposalHiring proposalHiring)
         {
             try

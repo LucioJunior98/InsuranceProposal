@@ -32,13 +32,14 @@ namespace Insurance.Application.Services
                 Insurances insurances = await _insurancesRepository.GetById(proposalHiring.InsurancesId) ?? throw new Exception("Não foi encontrado Proposta de Seguro !");
 
                 if(insurances.Status != InsuranceStatus.Approved)
-                    throw new Exception("A Proposta de Seguro precisa estar com o status Aprovado para ser contratado !");  
+                    throw new Exception("A Proposta de Seguro precisa estar com o status Aprovado para ser contratado !");
 
-                //string proposalHiringJson = JsonSerializer.Serialize(proposalHiring);
+                string proposalHiringJson = JsonSerializer.Serialize(proposalHiring);
 
-                //result = _producerService.GenerateMessage(proposalHiringJson);
+                bool haveMessage = await _producerService.GenerateMessage(proposalHiringJson);
 
-                _proposalHiringRepository.Save(proposalHiring);
+                if (!haveMessage)
+                    _proposalHiringRepository.Save(proposalHiring);
 
                 _proposalHiringRepository.CommitTransaction();
 
@@ -71,6 +72,7 @@ namespace Insurance.Application.Services
                 {
                     proposalHiring.UpdateDate = DateTime.Now;
                     proposalHiring.Status = status;
+                    proposalHiring.UpdateUserId = userId;
                 }
 
                 _proposalHiringRepository.Update(proposalHiring);
