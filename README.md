@@ -3,7 +3,7 @@ Sistema que valida proposta de seguros
 
 Aplicação toda tanto em Windows quanto Linux
 
-Possue serviço de mensageria " Kafka "
+Possui serviço de mensageria " RabbitMQ ", para utilizar é necessario configurar a Maquina local para que rode Docker e aponte para LocalHost:5672
 
 Configuração da Aplicação:
 
@@ -50,6 +50,7 @@ PRIMARY KEY CLUSTERED
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
 
 
 Com tabelas criadas, basta fornecer as credencias de banco no AppSettings, exemplo: "InsuranceApi.con": "Server=sqlserver,1433;Database=LjSolution;TrustServerCertificate=True;"
@@ -81,5 +82,4 @@ ProposalHiringStatus
         Completed = 1,
         Cancelled = 2
     }
-GO
 
