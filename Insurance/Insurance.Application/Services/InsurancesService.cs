@@ -37,7 +37,6 @@ namespace Insurance.Application.Services
 
                 response.Success = false;
                 response.Message = ex.Message;
-                response.Exception = ex;
             }
 
             return response;
@@ -73,7 +72,6 @@ namespace Insurance.Application.Services
 
                 response.Success = false;
                 response.Message = ex.Message;
-                response.Exception = ex;
             }
 
             return response;
@@ -106,7 +104,6 @@ namespace Insurance.Application.Services
 
                 response.Success = false;
                 response.Message = ex.Message;
-                response.Exception = ex;
             }
 
             return response;
@@ -136,7 +133,6 @@ namespace Insurance.Application.Services
             {
                 response.Success = false;
                 response.Message = ex.Message;
-                response.Exception = ex;
             }
 
             return response;
@@ -166,7 +162,6 @@ namespace Insurance.Application.Services
             {
                 response.Success = false;
                 response.Message = ex.Message;
-                response.Exception = ex;
             }
 
             return response;
