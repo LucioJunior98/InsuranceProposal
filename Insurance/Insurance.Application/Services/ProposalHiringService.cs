@@ -27,6 +27,8 @@ namespace Insurance.Application.Services
 
             try
             {
+                string result = "ProposalHiring created successfully.";
+
                 Insurances insurances = await _insurancesRepository.GetById(proposalHiring.InsurancesId) ?? throw new Exception("Não foi encontrado Proposta de Seguro !");
 
                 if(insurances.Status != InsuranceStatus.Approved)
@@ -34,7 +36,7 @@ namespace Insurance.Application.Services
 
                 //string proposalHiringJson = JsonSerializer.Serialize(proposalHiring);
 
-                //string result = _producerService.GenerateMessage(proposalHiringJson);
+                //result = _producerService.GenerateMessage(proposalHiringJson);
 
                 _proposalHiringRepository.Save(proposalHiring);
 
