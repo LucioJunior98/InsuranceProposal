@@ -5,6 +5,9 @@ Aplicação toda tanto em Windows quanto Linux
 
 Possui serviço de mensageria " RabbitMQ ", para utilizar é necessario configurar a Maquina local para que rode Docker e aponte para LocalHost:5672
 
+Insurances e a tabela que representa o seguro
+ProposalHiring e a tabela que representa quem vai utilizar o seguro
+
 Configuração da Aplicação:
 
 Banco de Dados SQL Server:
