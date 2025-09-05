@@ -1,15 +1,11 @@
-﻿using Insurance.Domain.Interfaces.Application;
+﻿using CreateProposalHiringKafka.Interfaces;
+using Insurance.Domain.Interfaces.Application;
 
 namespace CreateProposalHiringKafka.Transaction
 {
-    public class ExecuteTRA
+    public class ExecuteTRA : IExecuteTRA
     {
         private readonly IConsumerService _consumerService;
-
-        public ExecuteTRA()
-        {
-
-        }
 
         public ExecuteTRA(IConsumerService consumerService)
         {

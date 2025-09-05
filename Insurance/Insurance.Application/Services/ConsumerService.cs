@@ -11,7 +11,7 @@ namespace Insurance.Application.Services
 
         private ConsumerConfig config => new ConsumerConfig
         {
-            BootstrapServers = "localhost:9092",
+            BootstrapServers = "localhost:29092",
             GroupId = "ProposalHiring-group",
             AutoOffsetReset = AutoOffsetReset.Earliest
         };

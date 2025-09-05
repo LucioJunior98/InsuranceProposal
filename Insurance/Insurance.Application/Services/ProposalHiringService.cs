@@ -23,7 +23,7 @@ namespace Insurance.Application.Services
         public async Task<BaseResponseDTO> CreateProposalHiring(ProposalHiring proposalHiring)
         {
             BaseResponseDTO response = new BaseResponseDTO();
-            //_proposalHiringRepository.BeginTransaction();
+            _proposalHiringRepository.BeginTransaction();
 
             try
             {
@@ -32,20 +32,20 @@ namespace Insurance.Application.Services
                 if(insurances.Status != InsuranceStatus.Approved)
                     throw new Exception("A Proposta de Seguro precisa estar com o status Aprovado para ser contratado !");  
 
-                string proposalHiringJson = JsonSerializer.Serialize(proposalHiring);
+                //string proposalHiringJson = JsonSerializer.Serialize(proposalHiring);
 
-                string result = _producerService.GenerateMessage(proposalHiringJson);
+                //string result = _producerService.GenerateMessage(proposalHiringJson);
 
-                //_proposalHiringRepository.Save(proposalHiring);
+                _proposalHiringRepository.Save(proposalHiring);
 
-                //_proposalHiringRepository.CommitTransaction();
+                _proposalHiringRepository.CommitTransaction();
 
                 response.Success = true;
                 response.Message = result;
             }
             catch (Exception ex)
             {
-                //_proposalHiringRepository.RollbackTransaction();
+                _proposalHiringRepository.RollbackTransaction();
 
                 response.Success = false;
                 response.Message = ex.Message;
