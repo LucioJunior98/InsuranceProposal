@@ -39,7 +39,6 @@ CREATE TABLE [dbo].ProposalHiring (
 	[TaxNumber] [varchar](60) NOT NULL,
 	[BirthDate] [datetime] NOT NULL,
 	[Status] [int] NOT NULL,
-	[InsuranceValue] [decimal](15, 2) NOT NULL,
 	[CreationDate] [datetime] NOT NULL,
 	[CreationUserId] [bigint] NULL,
 	[UpdateDate] [datetime] NULL,
